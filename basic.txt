@@ -1,0 +1,14 @@
+Admin (React)
+- Listing of all user
+- Blog Post
+- CURD  (blog, user)
+- Login / Logout
+
+
+User (React)
+- Login / Logout 
+- Singup
+- Post Blog, Delete Blog, Update Blog
+- View other Blog
+
+Backend (Api)
