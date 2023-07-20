@@ -18,6 +18,7 @@ const Singup = async (req, res) => {
       email: req.body.email,
       password: req.body.password,
       phone: req.body.phone,
+      role: req.body.role || 'user'
     });
     return res.send(userData);
   } catch (error) {
@@ -30,13 +31,13 @@ const Login = async (req, res) => {
     console.log(req.body, req.params, req.query);
     const userData = await USER.findOne({ email: req.body.email });
     if (!userData) {
-      return res.send({ msg: "No Such user" });
+      return res.status(400).send({ msg: "No Such user" });
     } else {
       const token = jwt.sign({ email:req.body.email}, 'ABCDEF', { expiresIn : '2hour' })
       userData.token = token;
       userData.authTokenIssueAt = new Date();
       userData.save();
-      return res.send(userData);
+      return res.status(200).send(userData);
     }
   } catch (error) {
     return res.send(error);
